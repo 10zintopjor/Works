@@ -31,7 +31,7 @@ def get_meta(bdrc_work_id, op_work_id):
 
     if "http://www.w3.org/2004/02/skos/core#altLabel" in content[f"http://purl.bdrc.io/resource/{bdrc_work_id}"]:
         for id in content[f"http://purl.bdrc.io/resource/{bdrc_work_id}"]["http://www.w3.org/2004/02/skos/core#altLabel"]:
-            li.append(id["value"])
+            li.append(ewtstobo(id["value"]))
 
     meta_dict["alternative-title"] = li
 
@@ -55,7 +55,7 @@ def get_meta(bdrc_work_id, op_work_id):
 
 def write_works(bdrc_work_id, op_work_id):
     meta_content = get_meta(bdrc_work_id, op_work_id)
-    yml_file = f"./works/{op_work_id}.yml"
+    yml_file = f"./yaml/{op_work_id}.yml"
     if meta_content is None:
         return
     with open(yml_file, "w") as file:
