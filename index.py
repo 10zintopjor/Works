@@ -26,12 +26,12 @@ def get_meta(bdrc_work_id, op_work_id):
     meta_dict["bdrc-work-id"] = bdrc_work_id
     li = []
 
-    meta_dict["title"] = content[f"http://purl.bdrc.io/resource/{bdrc_work_id}"][
-        "http://www.w3.org/2004/02/skos/core#prefLabel"][0]["value"]
+    meta_dict["title"] = ewtstobo(content[f"http://purl.bdrc.io/resource/{bdrc_work_id}"][
+        "http://www.w3.org/2004/02/skos/core#prefLabel"][0]["value"])
 
     if "http://www.w3.org/2004/02/skos/core#altLabel" in content[f"http://purl.bdrc.io/resource/{bdrc_work_id}"]:
         for id in content[f"http://purl.bdrc.io/resource/{bdrc_work_id}"]["http://www.w3.org/2004/02/skos/core#altLabel"]:
-            li.append(ewtstobo(id["value"]))
+            li.append(id["value"])
 
     meta_dict["alternative-title"] = li
 
